@@ -1,68 +1,83 @@
+# React Hooks Examples
+
+Some examples of how to use React Hooks (specifically state and effect). Full React Hooks docs [here](https://reactjs.org/docs/hooks-intro.html)
+
+### Why use Hooks?
+
+This allows you to maintain state and do 'stateful things' while writing functional as opposed to class based components. Functional components are preferable as React is optimised for functional components
+
+## Set up 
+
+```
+yarn install
+```
+
+## Run the project
+
+```
+yarn start 
+```
+
+The project runs on port 3000
+
+## Examples
+
+This project has 4 components (App, App1, App2, App3)
+
+To see the different behaviors change which component is used in [`index.js`](./src/index.js)
+
+### Example 1 - App.js
+
+Class based component using state. How to do state without React hooks.
+
+### Example 2 - App2.js
+
+Functional component using the [State](https://reactjs.org/docs/hooks-state.html) React hook. This is a rewrite of `App.js`
+
+### Example 3 - App3.js
+
+Class based component using state and `componentDidMount`. This example also works for `componentDidUpdate` and `componentWillUnmount`
+
+### Example 4 - App4.js
+
+Functional component using the [Effect](https://reactjs.org/docs/hooks-effect.html) React hook. This is a rewrite of `App3.js`.
+
+#### Expanding this for `componentDidUpdate` and `componentWillUnmount`
+
+`useEffect` takes 2 params. This function is the equivalent of `componentDidMount`. The function passed will run when the component mounts.
+
+```javascript
+useEffect(() => {
+setCount(getRandomInt(2, 100));
+}, []);
+```
+
+Modifications include:
+
+* Removing the square brackets. This will trigger the function passed as the first param on every re-render
+```javascript
+useEffect(() => {
+setCount(getRandomInt(2, 100));
+});
+```
+
+* Specifying a specific state property. This will only call the function passed when count changes
+```javascript
+useEffect(() => {
+setCount(getRandomInt(2, 100));
+}, [count]);
+```
+
+* The function returns a function. This function will be called when the component is destroyed (`componentWillUnmount`)
+```javascript
+useEffect(() => {
+setCount(getRandomInt(2, 100));
+return () => console.log('end')
+}, []);
+```
+
+## Custom Hooks
+
+A hook is just a function so it is possible to [define your own](https://reactjs.org/docs/hooks-custom.html)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### `yarn start`
-
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
-
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
